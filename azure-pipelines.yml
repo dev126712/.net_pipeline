@@ -37,14 +37,9 @@ stages:
 
     
     - script: |
-        echo "--- Installing Trivy ---"
         # Download and install Trivy
         curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
-        
-        echo "--- Running Trivy Scan ---"
-        # Trivy command structure: trivy image --exit-code 1 --severity CRITICAL,HIGH [ImageName]
-        # --exit-code 1: Fails the pipeline if vulnerabilities are found
-        # --severity: Filters for HIGH and CRITICAL severity only
+       
         /usr/local/bin/trivy image --exit-code 1 --severity CRITICAL,HIGH --ignore-unfixed $(imageRepository):$(tag)
       displayName: Trivy Security Scan
     
