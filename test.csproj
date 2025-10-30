@@ -4,12 +4,10 @@
 <Nullable>enable</Nullable>
 <ImplicitUsings>enable</ImplicitUsings>
 <InvariantGlobalization>true</InvariantGlobalization>
-<!-- Assuming the output DLL name is 'test.dll' -->
 <AssemblyName>test</AssemblyName>
 </PropertyGroup>
 
 <ItemGroup>
-<!-- These packages are necessary for your code to compile, as you are using WithOpenApi() -->
 <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
 <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 </ItemGroup>
