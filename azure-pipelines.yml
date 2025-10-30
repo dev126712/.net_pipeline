@@ -1,0 +1,59 @@
+trigger:
+- main
+
+variables:
+  projectName: 'test'
+  imageRepository: 'minimal-api-devops'
+  imageName: '$(AzureContainerRegistry)/$(imageRepository)'
+  tag: '$(Build.BuildId)'
+  AzureContainerRegistry: 'your-acr-name.azurecr.io' 
+  AzureCRConnection: 'my-acr-service-connection'
+
+pool:
+  name: 'Hosted-Agent-Pool'
+
+stages:
+- stage: Build_Scan_Push
+  displayName: Build, Scan & Push Image
+  jobs:
+  - job: Build
+    displayName: Docker Build and Security Scan
+    steps:
+    
+    - checkout: self
+      displayName: Checkout Source Code
+
+   
+    - task: Docker@2
+      displayName: Build Docker Image
+      inputs:
+        command: build
+        repository: $(imageRepository)
+        tags: $(tag)
+       
+        arguments: '--build-arg BUILD_CONFIGURATION=Release'
+        
+        dockerfile: 'Dockerfile' 
+
+    
+    - script: |
+        echo "--- Installing Trivy ---"
+        # Download and install Trivy
+        curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+        
+        echo "--- Running Trivy Scan ---"
+        # Trivy command structure: trivy image --exit-code 1 --severity CRITICAL,HIGH [ImageName]
+        # --exit-code 1: Fails the pipeline if vulnerabilities are found
+        # --severity: Filters for HIGH and CRITICAL severity only
+        /usr/local/bin/trivy image --exit-code 1 --severity CRITICAL,HIGH --ignore-unfixed $(imageRepository):$(tag)
+      displayName: Trivy Security Scan
+    
+    
+    - task: Docker@2
+      displayName: Push Image to ACR
+      inputs:
+        command: push
+        repository: $(imageRepository)
+        tags: $(tag)
+       
+        containerRegistry: $(AzureCRConnection)
