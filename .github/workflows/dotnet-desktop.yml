@@ -6,11 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  PROJECT_NAME: 'test'
-  IMAGE_REPOSITORY: ${{ github.repository }} 
-  IMAGE_TAG: ${{ github.sha }}
-
 jobs:
   build-scan-push:
     name: Build, Scan, and Push
