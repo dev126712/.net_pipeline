@@ -8,7 +8,7 @@ on:
 
 env:
   PROJECT_NAME: 'test'
-  IMAGE_REPOSITORY: ${{ github.repository }} # Uses the name of the GitHub repo
+  IMAGE_REPOSITORY: ${{ github.repository }} 
   IMAGE_TAG: ${{ github.sha }}
 
 jobs:
@@ -22,8 +22,7 @@ jobs:
       with:
         fetch-depth: 0
 
-  
-          
+      
     - name: Run Trivy vulnerability scan
       uses: aquasecurity/trivy-action@master
       with:
