@@ -24,8 +24,6 @@ jobs:
 
   
           
-    # 3. Security Scan with Trivy
-    # We pull the image back down from GHCR to ensure we are scanning the final pushed artifact
     - name: Run Trivy vulnerability scan
       uses: aquasecurity/trivy-action@master
       with:
@@ -35,8 +33,6 @@ jobs:
         ignore-unfixed: true
         severity: 'CRITICAL,HIGH'
         
-    # 4. Optional: Upload Image Tag as an Artifact
-    # Useful for later steps that need the full tag
     - name: Save Image Tag Artifact
       uses: actions/upload-artifact@v4
       with:
