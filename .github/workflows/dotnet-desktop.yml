@@ -52,6 +52,7 @@ jobs:
             --pkg-types os,library \
             --severity CRITICAL,HIGH,MEDIUM \
             "$IMAGE" 
+          done
         
     - name: Save Image Tag Artifact
       uses: actions/upload-artifact@v4
