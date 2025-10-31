@@ -22,7 +22,7 @@ jobs:
 
     - name: Build the Docker images
       run: |
-        docker build ./ -t dev126712/.env-image:latest
+        docker build ./ -t dev126712/env:latest
 
     - name: set up docker
       uses: docker/setup-buildx-action@v2
