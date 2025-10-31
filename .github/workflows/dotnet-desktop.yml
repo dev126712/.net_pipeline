@@ -51,7 +51,6 @@ jobs:
             --ignore-unfixed \
             --pkg-types os,library \
             --severity CRITICAL,HIGH,MEDIUM \
-            >>  "$OUTPUT_FILE" \
             "$IMAGE" 
         
     - name: Save Image Tag Artifact
