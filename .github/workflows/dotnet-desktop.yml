@@ -44,14 +44,14 @@ jobs:
           "dev126712/net:latest"
         )
 
-        
-        trivy image \
-            --exit-code 0 \
-            --format json \
-            --ignore-unfixed \
-            --pkg-types os,library \
-            --severity CRITICAL,HIGH,MEDIUM \
-            "$IMAGE" 
+        for IMAGE in "${IMAGES[@]}"; do
+          trivy image \
+              --exit-code 0 \
+              --format json \
+              --ignore-unfixed \
+              --pkg-types os,library \
+              --severity CRITICAL,HIGH,MEDIUM \
+              "$IMAGE" 
         
     - name: Save Image Tag Artifact
       uses: actions/upload-artifact@v4
