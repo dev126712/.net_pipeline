@@ -1,7 +1,0 @@
-trigger:
-- main
-
-stages:
-  stage:
-    jobs:
-      job:
