@@ -46,6 +46,7 @@ jobs:
         IMAGES=(
           "dev126712/env:latest"
         )
+
         
         trivy image \
             --exit-code 0 \
