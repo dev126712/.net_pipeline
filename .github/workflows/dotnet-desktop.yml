@@ -32,9 +32,6 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y curl
         curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin v0.57.0
-
-    #- name: Login to GitHub Container Registery
-    #  run: echo "{{ secrets.GHCR_PAT }}" | docker login ghcr.io -u {{ github.actor }} --password-stdin
   
     - name: Download Trivy vulnerability database
       run: trivy image --download-db-only
@@ -42,7 +39,7 @@ jobs:
       
     - name: Run Trivy vulnerability scan
       run: | 
-        docker login -u dev126712 -p ${{ secrets.DOCKER_HUB_TOKEN }}
+        docker login -u dev126712 -p ${{ secrets.DOCKER_HUB_REPO_TOKEN }}
         IMAGES=(
           "dev126712/env:latest"
         )
