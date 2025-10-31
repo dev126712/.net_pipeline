@@ -41,7 +41,7 @@ jobs:
       run: | 
         docker login -u dev126712 -p ${{ secrets.DOCKER_HUB_REPO_TOKEN }}
         IMAGES=(
-          "dev126712/env:latest"
+          "dev126712/net:latest"
         )
 
         
