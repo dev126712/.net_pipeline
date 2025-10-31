@@ -39,7 +39,7 @@ jobs:
       
     - name: Run Trivy vulnerability scan
       run: | 
-        docker login -u dev126712 -p ${{ secrets.DOCKER_HUB_REPO_TOKEN }}
+        docker login -u dev126712 -p ${{ secrets.DOCKERHUB_REPO_TOKEN }}
         IMAGES=(
           "dev126712/net:latest"
         )
