@@ -62,11 +62,3 @@ jobs:
              echo "Image not push Vulnerability found"
           fi
         done
-        
-    - name: Save Image Tag Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: deployment-tag
-        path: ${{ runner.temp }}/.image-tag
-        
-    - run: echo "${{ env.IMAGE_TAG }}" > ${{ runner.temp }}/.image-tag
