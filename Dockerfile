@@ -8,7 +8,6 @@ COPY program.cs .
 COPY . .
 RUN dotnet publish -c $BUILD_CONFIGURATION -o /app/publish --no-restore
 
-
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 USER root
 WORKDIR /app
