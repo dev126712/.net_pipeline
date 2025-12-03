@@ -15,18 +15,15 @@ concurrency:
 permissions:
   contents: read
 
-<<<<<<< HEAD
 env:
   IMAGE_NAME: net_image
   IMAGE_LATEST_TAG: net_image:latest 
   TAGS: net_image:latest, net_image:${{ github.sha }}
 
-=======
->>>>>>> 35bb3dcb269d287d9a63e6f0501d65c18dcb7603
 jobs:
 
   sast_scan:
-    name: AST Scan
+    name: AST Scan    
     runs-on: ubuntu-latest
     steps:
     - name: heckout Repository
