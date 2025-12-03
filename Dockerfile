@@ -5,7 +5,7 @@ WORKDIR /src
 COPY test.csproj ./
 RUN dotnet restore
 COPY . .
-RUN dotnet publish -c $BUILD_CONFIGURATION -o /app/publish --no-restore
+RUN dotnet publish "test.csproj" -c $BUILD_CONFIGURATION -o /app/publish --no-restore
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 USER root
