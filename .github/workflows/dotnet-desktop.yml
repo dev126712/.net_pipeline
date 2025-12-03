@@ -140,7 +140,7 @@ jobs:
 
     - name: Push Image to Docker Hub
       run: |
-        DOCKER_REPO=`${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest`
+        DOCKER_REPO="${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest"
         docker push $DOCKER_REPO:latest
         docker push $DOCKER_REPO:${{ github.sha }}
 
