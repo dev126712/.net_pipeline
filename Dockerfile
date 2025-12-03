@@ -4,7 +4,6 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src 
 COPY test.csproj ./
 RUN dotnet restore
-COPY program.cs .
 COPY . .
 RUN dotnet publish -c $BUILD_CONFIGURATION -o /app/publish --no-restore
 

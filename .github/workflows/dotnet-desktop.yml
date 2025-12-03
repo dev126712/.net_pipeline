@@ -14,6 +14,7 @@ concurrency:
 
 permissions:
   contents: read
+  security-events: write
 
 env:
   IMAGE_NAME: net_image
