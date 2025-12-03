@@ -132,4 +132,4 @@ jobs:
         docker push ${{ env.IMAGE_NAME }}:${{ github.sha }}
 
     - name: Docker - Logout
-      uses: docker/logout-action@v2
+      run: docker logout
