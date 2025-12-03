@@ -9,16 +9,16 @@ sudo docker build . -t test2:latest
 sudo docker run -d -p 8080:8080 -e ASPNETCORE_ENVIRONMENT="Development" test2:latest
 ```
 
-Docker CI/CD Pipeline for .NET API
+### Docker CI/CD Pipeline for .NET API
 
 This workflow performs Static Analysis (CodeQL), builds the Docker image,
 
 scans the image for vulnerabilities (Trivy), and pushes the final, secure
 
 image to Docker Hub, tagged with 'latest' and the Git SHA.
-
-name: Docker CI/CD - .NET API
 ```
+name: Docker CI/CD - .NET API
+
 on:
 push:
 branches: [ "main" ]
@@ -45,7 +45,7 @@ jobs:
 ```
 ----------------------------------------------------
 
-1. SAST SCAN (CodeQL)
+## 1. SAST SCAN (CodeQL)
 
 ----------------------------------------------------
 ```
@@ -73,7 +73,7 @@ fetch-depth: 2
 
 ----------------------------------------------------
 
-2. BUILD IMAGE & UPLOAD ARTIFACT
+## 2. BUILD IMAGE & UPLOAD ARTIFACT
 
 ----------------------------------------------------
 ```
@@ -110,7 +110,7 @@ steps:
 ```
 ----------------------------------------------------
 
-3. SECURITY SCAN IMAGE (Trivy)
+## 3. SECURITY SCAN IMAGE (Trivy)
 
 ----------------------------------------------------
 ```
@@ -153,7 +153,7 @@ steps:
 ```
 ----------------------------------------------------
 
-4. PUSH IMAGE (Final Authorization and Push)
+## 4. PUSH IMAGE (Final Authorization and Push)
 
 ----------------------------------------------------
 ```
