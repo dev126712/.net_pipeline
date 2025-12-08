@@ -1,0 +1,27 @@
+name: security check
+
+on:
+  push:
+    branches:
+      - main
+    paths: '**'
+
+permissions:
+  contents: read
+
+jobs: 
+  secirity-scan-on-workflows:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write 
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v4
+
+    - name: Run Checkov Security Scan on yml files
+      uses: bridgecrewio/checkov-action@master
+      with:
+        directory:  .github/workflows
+        output_format: cli
+        soft_fail: true
+        quiet: true  
